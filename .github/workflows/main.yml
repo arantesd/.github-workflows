@@ -1,0 +1,14 @@
+name: Disparar Trigger após PR aprovada
+
+on:
+  pull_request:
+    types:
+    - closed
+jobs:
+  disparar-triggers:
+    runs-on: ubuntu-lastest
+    steps:
+    - name: pr aprovada ? 
+      if: github.event.pull_request.merged == true && github.event.pull_request.merged_by != null
+      run: |
+        echo "pr aprovada, dispara trigger"
